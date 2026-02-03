@@ -1,5 +1,4 @@
-# Update README with better formatting and your details
-echo "# 🔥 Electric Motor Temperature Prediction System
+🔥 Electric Motor Temperature Prediction System
 
 ## 👨‍💻 Developer: **Yaswanth Hari**  
 **Internship Project | Predictive Maintenance System**  
@@ -264,9 +263,9 @@ Content-Type: application/json
 **Machine Learning & Data Science Enthusiast**
 
 🔗 **GitHub:** [yaswanthhari](https://github.com/yaswanthhari)  
-📧 **Email:** [Add your email]  
-💼 **LinkedIn:** [Add your LinkedIn profile]  
-🎓 **Education:** [Your University/College]
+📧 **Email:** [yaswanthharitaluru@gmail.com]  
+💼 **LinkedIn:** [https://www.linkedin.com/in/yaswanthhari807441]  
+🎓 **Education:** [BTECH 3rd year CAI in Siddharth institute of engineering and technology]
 
 ### **About This Project:**
 This project was developed as part of an internship program to demonstrate practical application of machine learning in industrial predictive maintenance. The system showcases the complete lifecycle of an ML project from concept to deployment.
@@ -292,12 +291,3 @@ If you find this project useful, please consider:
 2. 🔗 **Sharing** with others who might benefit
 3. 🐛 **Reporting** issues or suggesting improvements
 4. 💡 **Contributing** to make it even better
-
----
-**🔥 *Happy Coding!***  
-**🚀 *Predictive Maintenance for a Safer, More Efficient Industrial Future!***" > README.md
-
-# Commit the updated README
-git add README.md
-git commit -m "Update: Professional README with badges, table of contents, and detailed documentation"
-git push origin main
