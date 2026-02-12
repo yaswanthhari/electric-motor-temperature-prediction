@@ -92,117 +92,80 @@ pip install -r requirements.txt
 ## 🖥️ Usage
 
 ### **1. Generate Synthetic Data**
-\`\`\`bash
 python create_data.py        # Creates motor_data.csv
 python create_scaler.py      # Creates scaler.pkl
-\`\`\`
 
 ### **2. Run the API Server**
-\`\`\`bash
 python app.py
-\`\`\`
 **API Server:** http://localhost:5000
 
 ### **3. Launch Interactive Dashboard**
-\`\`\`bash
 streamlit run dashboard.py
-\`\`\`
 **Dashboard:** http://localhost:8501
 
 ### **4. Test the System**
-\`\`\`bash
 # Test API endpoints
 python test_api.py
 
 # Make CLI predictions
 python predict.py --voltage 220 --current 10.5 --speed 1500 --torque 25 --ambient_temp 30
-\`\`\`
 
 ---
 
 ## 📁 Project Structure
-\`\`\`
-electric-motor-temperature-prediction/
+📦 electric-motor-temperature-prediction
+├── 📂 src/                           # 🔧 Source Code
+│   ├── 📄 __init__.py
+│   ├── 📄 data_loader.py           # Data loading utilities
+│   ├── 📄 preprocessing.py         # Feature engineering
+│   └── 📄 utils.py                # Helper functions
 │
-├── notebooks/                    # Complete analysis workflow
-│   ├── 01_data_exploration.ipynb    # EDA and visualization
-│   ├── 02_preprocessing.ipynb       # Data cleaning & feature engineering
-│   └── 03_modeling.ipynb            # Model training & evaluation
+├── 📓 notebooks/                    # 📊 Analysis
+│   ├── 📓 01_eda.ipynb            # Exploratory Data Analysis
+│   ├── 📓 02_preprocessing.ipynb  # Feature Engineering
+│   └── 📓 03_modeling.ipynb       # Model Training
 │
-├── data/                         # Data storage
-│   ├── raw/                      # Raw synthetic data
-│   └── processed/                # Processed data for modeling
+├── 📁 data/                         # 💾 Data Storage
+│   ├── 📂 raw/                    # Original data
+│   │   ├── 🔒 motor_data.csv     # Generated (10k samples)
+│   │   └── 📄 .gitkeep
+│   └── 📂 processed/              # Cleaned data
+│       ├── 🔒 train_data.csv     # Training set (80%)
+│       ├── 🔒 test_data.csv      # Test set (20%)
+│       └── 📄 .gitkeep
 │
-├── models/                       # ML models and scalers
-│   ├── scaler.pkl               # Data scaler (generated)
-│   └── model.pkl                # Trained model (generated)
+├── 📁 models/                       # 🤖 ML Models
+│   ├── 🔒 best_model.pkl         # Trained model (10KB)
+│   ├── 🔒 scaler.pkl            # Feature scaler
+│   └── 📄 .gitkeep
 │
-├── assets/                       # Visualizations and screenshots
-│   └── .gitkeep
+├── 📁 assets/                       # 🖼️ Resources
+│   ├── 🖼️ dashboard_preview.png  # Screenshots
+│   ├── 🖼️ correlation_matrix.png # Visualizations
+│   └── 📄 .gitkeep
 │
-├── app.py                       # Flask REST API
-├── dashboard.py                 # Streamlit dashboard
-├── predict.py                   # CLI prediction tool
-├── create_data.py               # Synthetic data generation
-├── create_scaler.py             # Data scaler creation
-├── test_api.py                  # API testing script
+├── 📁 tests/                        # 🧪 Testing
+│   ├── 📄 test_api.py            # API test suite
+│   └── 📄 test_model.py          # Model validation
 │
-├── requirements.txt             # Python dependencies
-├── LICENSE                      # MIT License
-└── README.md                    # This file
-\`\`\`
+├── 🚀 app.py                       # Flask API (200 LOC)
+├── 📊 dashboard.py                 # Streamlit UI (300 LOC)
+├── 🎯 predict.py                  # CLI tool (150 LOC)
+├── 🔧 create_data.py              # Data generator (100 LOC)
+├── ⚙️ create_scaler.py           # Scaler creator (50 LOC)
+│
+├── 📦 requirements.txt            # 📚 Dependencies
+├── 📄 LICENSE                    # ⚖️ MIT License
+├── 📖 README.md                 # 📘 Documentation (You are here)
+└── 🐳 Dockerfile               # 🐋 Containerization (Coming soon)
 
----
 
 ## 🔧 API Documentation
-
-### **Base URL:** \`http://localhost:5000\`
-
-### **1. Health Check**
-\`\`\`http
-GET /health
-\`\`\`
-**Response:**
-\`\`\`json
-{
-  \"status\": \"healthy\",
-  \"timestamp\": \"2024-01-15T10:30:00Z\"
-}
-\`\`\`
-
-### **2. Predict Temperature**
-\`\`\`http
-POST /predict
-Content-Type: application/json
-\`\`\`
-**Request Body:**
-\`\`\`json
-{
-  \"voltage\": 220.0,
-  \"current\": 10.5,
-  \"speed\": 1450.0,
-  \"torque\": 25.3,
-  \"ambient_temp\": 25.0
-}
-\`\`\`
-**Response:**
-\`\`\`json
-{
-  \"predicted_temperature\": 68.42,
-  \"status\": \"normal\",
-  \"confidence\": 0.998,
-  \"warning\": null,
-  \"timestamp\": \"2024-01-15T10:30:00Z\"
-}
-\`\`\`
-
-### **3. Batch Prediction**
-\`\`\`http
-POST /predict/batch
-Content-Type: application/json
-\`\`\`
-
----
+🌐 Base URL: http://localhost:5000
+📡 Protocol: HTTP/1.1
+🔐 Authentication: None (Development)
+📦 Response Format: JSON
+🎯 Content-Type: application/json
 
 ## 📈 Model Performance
 | Model | R² Score | MAE (°C) | RMSE (°C) | Training Time |
