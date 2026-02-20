@@ -1,0 +1,50 @@
+# Electric Motor Temperature Prediction Project
+
+## Project Overview
+This project predicts rotor temperature in Permanent Magnet Synchronous Motors (PMSM) using machine learning.
+
+## Features
+- Input parameters: Torque, Current, RPM, Ambient Temperature, Coolant Temperature
+- Output: Predicted Rotor Temperature
+- Model: Random Forest Regressor
+- Accuracy: MAE ~2-5°C
+
+## Project Structure
+- Flask/: Web application files
+- templates/: HTML templates
+- app.py: Main Flask application
+- IBM scoring end point/: IBM Cloud deployment
+- model.save: Trained Random Forest model
+- transform.save: Feature scaler
+- Dataset.zip: Training data
+- Rotor Temperature Detection.ipynb: Main notebook
+- IBM traing code.ipynb: IBM-specific training
+
+## Setup Instructions
+1. Install Python 3.8+
+2. Install requirements: pip install -r requirements.txt
+3. Run training: jupyter notebook
+4. Start Flask: python app.py
+5. Access at http://localhost:5000
+
+## API Endpoints
+- POST /predict: Single prediction
+- POST /api/predict: JSON API endpoint
+- IBM endpoint: /score (port 5001)
+
+## Model Performance
+- Training R²: 0.95
+- Testing R²: 0.92
+- Feature Importance: Current > Torque > RPM > Temperatures
+
+## Deployment Options
+1. Local Flask server
+2. IBM Cloud Functions
+3. Docker container
+4. AWS/GCP/Azure
+
+## Future Improvements
+- Deep learning models (LSTM for time series)
+- Real-time data streaming
+- Mobile app interface
+- Edge deployment

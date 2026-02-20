@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>IBM Predictor</title> 
+</head> 
+<body> 
+    <h1>IBM Motor Temperature Predictor</h1> 
+    <div id="status">Checking...</div> 
+    <form id="predictionForm"> 
+        <input type="number" id="torque" placeholder="Torque" value="150"><br> 
+        <input type="number" id="current" placeholder="Current" value="250"><br> 
+        <input type="number" id="rpm" placeholder="RPM" value="3000"><br> 
+        <input type="number" id="ambient" placeholder="Ambient" value="25"><br> 
+        <input type="number" id="coolant" placeholder="Coolant" value="30"><br> 
+        <button type="submit">Predict</button> 
+    </form> 
+    <div id="result"></div> 
+    <script> 
+        fetch('/health').then(r=>r.json()).then(d=>{ 
+            document.getElementById('status').innerText = d.status; 
+        }); 
+        document.getElementById('predictionForm').onsubmit = async (e) => { 
+            e.preventDefault(); 
+            const data = { 
+                torque: parseFloat(document.getElementById('torque').value), 
+                current: parseFloat(document.getElementById('current').value), 
+                rpm: parseFloat(document.getElementById('rpm').value), 
+                ambient_temp: parseFloat(document.getElementById('ambient').value), 
+                coolant_temp: parseFloat(document.getElementById('coolant').value) 
+            }; 
+            const r = await fetch('/score', { 
+                method: 'POST', 
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify(data) 
+            }); 
+            const res = await r.json(); 
+            if (res.prediction) { 
+                document.getElementById('result').innerText = res.prediction.toFixed(2) + 'AøC'; 
+            } 
+        }; 
+    </script> 
+</body> 
+</html> 
